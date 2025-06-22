@@ -144,5 +144,24 @@ class DatabaseSeeder extends Seeder
             'email' => 'usuario1@gmail.com',
             'password' => Hash::make('20237390')
         ])->assignRole('usuario');
+
+        ///creacion de horarios
+        Horario::create([
+            'dia'=> 'JUEVES',
+            'hora_inicio' => '08:00:00',
+            'hora_FIN' => '16:00:00',
+            'doctor_id' => '1',
+            'consultorio_id' => '1'
+
+
+
+
+
+    ]);
     }
+
 }
+
+    
+
+    

@@ -123,13 +123,31 @@
           </div>
 
           @endcan
-          
-          <div class="row">
 
+          @can('admin.horarios.index')
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{$total_eventos}}</h3>
+
+                <p>Reservas</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-calendar-check" aria-hidden="true" style="font-size: 60px; color: white;"></i>
+              </div>
+              <a href="" class="small-box-footer">Cantidad </a>
+            </div>
           </div>
+
+          @endcan
+          
 </div>
 
-<div class="row">
+  @can('cargar_datos_consultorios')
+ 
+ <div class="row">
   <div class="col-md-12">
     <div class="card card-outline card-primary">
       <div class="card-header">
@@ -396,6 +414,122 @@
    
 
     
+  @endcan
+  
+  @if(Auth::check() && Auth::user()->doctor)
+  <div class="row">
+  <div class="col-md-12">
+    <div class="card card-outline card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Calendario de Reservas</h3>
+        
+      
+      </div>
+      
+               
+           </div>
+                                
+        </div>
+
+        <hr>
+<div class="card-body">
+  
+  <table id="example1" class="table table-bordered table-hover table-sm">
+    <thead style="background-color: #c0c0c0"> 
+    
+      <tr>
+        <td style="text-align:center"><b>N°</b></td>
+        <td style="text-align:center"><b>Usuario</b></td>
+        <td style="text-align:center"><b>Fecha de Reserva</b></td>
+        <td style="text-align:center"><b>Hora de Reserva</b></td>
+        
+        
+        
+      </tr>
+    </thead> 
+    <tbdy>
+      <?php $contador=1; ?>
+  @foreach($eventos as $evento)
+      @if(Auth::user()->doctor->id == $evento->doctor_id)
+      <tr>
+      <td style="text-align:center">{{$contador++}}</td>
+
+      <td>{{$evento->user->name}}</td>
+      <td style="text-align:center">{{\Carbon\Carbon::parse($evento->start)->format('Y-m-d')}}</td>
+      <td style="text-align:center">{{\Carbon\Carbon::parse($evento->start)->format('H-i')}}</td>     
+      
+</tr>
+      @endif
+  
+  
+    
+    @endforeach
+</tbody>
+</table>
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "pageLength": 5,
+            "language": {
+                "emptyTable": "No hay información",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Consultorios",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Consultorios",
+                "infoEmpty": "Mostrando 0 a 0 de 0 ",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Consultorios",
+                "infoFiltered": "(Filtrado de _MAX_ total )",
+                "infoPostFix": "",
+                "thousands": ",",
+                "info": "Mostrando _START_ a _END_ de _TOTAL_ Consultorios",
+                "lengthMenu": "Mostrar _MENU_ ",
+                "loadingRecords": "Cargando...",
+                "processing": "Procesando...",
+                "search": "Buscador:",
+                "zeroRecords": "Sin resultados encontrados",
+                "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                }
+            },
+            "responsive": true, "lengthChange": true, "autoWidth": false,
+            buttons: [{
+                extend: 'collection',
+                text: 'Reportes',
+                orientation: 'landscape',
+                buttons: [{
+                    text: 'Copiar',
+                    extend: 'copy',
+                }, {
+                    extend: 'pdf'
+                },{
+                    extend: 'csv'
+                },{
+                    extend: 'excel'
+                },{
+                    text: 'Imprimir',
+                    extend: 'print'
+                }
+                ]
+            },
+                {
+                    extend: 'colvis',
+                    text: 'Visor de columnas',
+                    collectionLayout: 'fixed three-column'
+                }
+            ],
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>
+</div>
+
+</div>
+       
+
+</div>
+  @endif
+   
+
 
 @endsection
 

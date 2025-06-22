@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Doctor;
+
 
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
