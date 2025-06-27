@@ -317,6 +317,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
       @endcan
 
+
+      @can('admin.historial.index')
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+    
+               
+            <i class="fa fa-file-text" aria-hidden="true" style="font-size: 10px; color: white;"></i>
+            
+            
+              <p>
+                  Historial
+                  <i class="right fas fa-angle-left"></i>
+                  
+                
+                
+              </p>
+            </a>
+          <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('admin/historial/create')}}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Creación Historial</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('admin/historial')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listado de Historiales</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+      @endcan
+
       
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"

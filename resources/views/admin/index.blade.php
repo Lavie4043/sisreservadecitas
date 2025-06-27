@@ -11,6 +11,26 @@
 <hr>
 
      <div class="row">
+
+     @can('admin.configuraciones.index')
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-dark">
+              <div class="inner">
+                <h3>{{$total_configuraciones}}</h3>
+
+                <p>Configuraciones</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-cog" aria-hidden="true" style="font-size: 60px; color: white;"></i>
+              </div>
+              <a href="{{url('/admin/configuraciones')}}" class="small-box-footer">Más información </a>
+            </div>
+          </div>
+
+          @endcan
+
       @can('admin.usuarios.index')
      
       <div class="col-lg-3 col-6">
@@ -128,7 +148,7 @@
 
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-indigo">
               <div class="inner">
                 <h3>{{$total_eventos}}</h3>
 
@@ -142,6 +162,8 @@
           </div>
 
           @endcan
+
+          
           
 </div>
 

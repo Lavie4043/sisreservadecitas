@@ -109,7 +109,7 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.eventos.destroy'])->syncRoles([$admin,$usuario]);
 
 
-        //Rutas para el admin configuraciones
+        
 
 
 //admin configuraciones
@@ -123,7 +123,23 @@ class RoleSeeder extends Seeder
         Permission::create(['name' => 'admin.configuraciones.confirmDelete'])->syncRoles([$admin]);
         Permission::create(['name' => 'admin.configuraciones.destroy'])->syncRoles([$admin]);
  
-    }
-
     
+
+    //admin historial
+
+        Permission::create(['name' => 'admin.historial.index'])->syncRoles([$doctor]);
+
+        Permission::create(['name' => 'admin.historial.create'])->syncRoles([$doctor]);
+        Permission::create(['name' => 'admin.historial.store'])->syncRoles([$doctor]);
+
+        Permission::create(['name' => 'admin.historial.pdf'])->syncRoles([$doctor]);
+
+        Permission::create(['name' => 'admin.historial.show'])->syncRoles([$doctor]);
+        Permission::create(['name' => 'admin.historial.edit'])->syncRoles([$doctor]);
+        Permission::create(['name' => 'admin.historial.update'])->syncRoles([$doctor]);
+        Permission::create(['name' => 'admin.historial.confirmDelete'])->syncRoles([$doctor]);
+        Permission::create(['name' => 'admin.historial.destroy'])->syncRoles([$doctor]);
+
+
+    }
 }

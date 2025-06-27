@@ -11,6 +11,9 @@ use App\Models\User;
 use App\Models\Doctor;
 use App\Models\Consultorio;
 use App\Models\Horario;
+use App\Models\Configuracione;
+use App\Models\Paciente;
+
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -153,15 +156,18 @@ class DatabaseSeeder extends Seeder
             'doctor_id' => '1',
             'consultorio_id' => '1'
 
-
-
-
-
     ]);
-    }
+    
 
+    Configuracione::create([
+        'nombre' => 'Clinica Medica',
+        'direccion' => 'Calle Falsa 123',
+        'telefono' => '2612345678',
+        'correo' => 'clinica@gmail.com',
+        'logo' => 'logos/LqrULcm3UKmil07nQR1IU8K1ABCqWYx8akr2PKX6.jpg'
+    ]);     
 }
 
     
-
+}
     

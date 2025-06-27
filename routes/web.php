@@ -177,3 +177,28 @@ Route::post('/admin/eventos/create', [App\Http\Controllers\EventController::clas
 
 
 Route::delete('/admin/eventos/destroy/{id}', [App\Http\Controllers\EventController::class, 'destroy'])->name('admin.eventos.destroy')->middleware('auth','can:admin.eventos.destroy');
+
+//rutas para el historial clinico
+
+Route::get('/admin/historial', 
+[App\Http\Controllers\HistorialController::class, 'index'])->name('admin.historial.index')->middleware('auth','can:admin.historial.index');
+
+Route::get('/admin/historial/create', [App\Http\Controllers\HistorialController::class, 'create'])->name('admin.historial.create')->middleware('auth','can:admin.historial.create');
+
+Route::post('/admin/historial/create', [App\Http\Controllers\HistorialController::class, 'store'])->name('admin.historial.store')->middleware('auth','can:admin.historial.create');
+
+Route::post('/admin/historial/pdf', [App\Http\Controllers\HistorialController::class, 'pdf'])->name('admin.historial.store')->middleware('auth','can:admin.historial.store');
+
+
+Route::get('/admin/historial/{id}', [App\Http\Controllers\HistorialController::class, 'show'])->name('admin.historial.show')->middleware('auth','can:admin.historial.show');
+
+Route::get('/admin/historial/{id}/edit', [App\Http\Controllers\HistorialController::class, 'edit'])->name('admin.historial.edit')->middleware('auth','can:admin.historial.edit');
+
+Route::put('/admin/historial/{id}', [App\Http\Controllers\HistorialController::class, 'update'])->name('admin.historial.update')->middleware('auth','can:admin.historial.update');
+
+Route::get('/admin/historial/{id}/confirm-delete', [App\Http\Controllers\HistorialController::class,'confirmDelete'])->name('admin.historial.confirmDelete')->middleware('auth','can:admin.historial.confirmDelete');
+
+Route::delete('/admin/historial/{id}', [App\Http\Controllers\HistorialController::class,'destroy'])->name('admin.historial.destroy')->middleware('auth','can:admin.historial.destroy');
+
+
+
