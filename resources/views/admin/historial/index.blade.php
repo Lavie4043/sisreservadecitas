@@ -56,13 +56,14 @@
       
       <a href="{{url('admin/historial/'.$historiale->id)}}" type="button" class="btn btn-info btn-sm">Ver<i class="bi bi-eye"></i> </a>
             <a href="{{url('admin/historial/'.$historiale->id.'/edit')}}" class="btn btn-success btn-sm">Editar<i class="bi bi-pencil"></i></a>
+            
             <a href="{{url('admin/historial/'.$historiale->id.'/confirm-delete')}}" class="btn btn-danger btn-sm">Borrar<i class="bi bi-trash"></i></a>
           </div>
         
       </td>
 </tr>
 
-  @endif-
+  @endif
     
     @endforeach
 

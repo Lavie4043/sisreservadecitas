@@ -127,7 +127,7 @@ class RoleSeeder extends Seeder
 
     //admin historial
 
-        Permission::create(['name' => 'admin.historial.index'])->syncRoles([$doctor]);
+        Permission::create(['name' => 'admin.historial.index'])->syncRoles([$doctor,$usuario, $paciente, $secretaria]);
 
         Permission::create(['name' => 'admin.historial.create'])->syncRoles([$doctor]);
         Permission::create(['name' => 'admin.historial.store'])->syncRoles([$doctor]);

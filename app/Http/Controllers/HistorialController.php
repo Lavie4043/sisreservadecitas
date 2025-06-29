@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Historial;
 use App\Models\Paciente;
 use App\Models\Doctor;
+use App\Models\Configuracione;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+
 
 class HistorialController extends Controller
 {
@@ -117,8 +120,27 @@ class HistorialController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Historial $historial)
+
+     public function ConfirmDelete($id)
     {
-        //
+        $historial = Historial::find($id);
+        return view('admin.historial.delete', compact('historial')); 
     }
+    public function destroy($id)
+    {
+        $historial = Historial::find($id);
+
+             
+
+        $historial->delete();
+        
+        return redirect()->route('admin.historial.index')
+        
+        ->with('mensaje', 'Se eliminó el historial correctamente') 
+        ->with('icono', 'success'); 
+    }
+
+   
+
+    
 }

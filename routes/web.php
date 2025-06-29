@@ -187,7 +187,7 @@ Route::get('/admin/historial/create', [App\Http\Controllers\HistorialController:
 
 Route::post('/admin/historial/create', [App\Http\Controllers\HistorialController::class, 'store'])->name('admin.historial.store')->middleware('auth','can:admin.historial.create');
 
-Route::post('/admin/historial/pdf', [App\Http\Controllers\HistorialController::class, 'pdf'])->name('admin.historial.store')->middleware('auth','can:admin.historial.store');
+Route::get('/admin/historial/pdf/{id}', [App\Http\Controllers\HistorialController::class, 'pdf'])->name('admin.historial.pdf')->middleware('auth','can:admin.historial.pdf');
 
 
 Route::get('/admin/historial/{id}', [App\Http\Controllers\HistorialController::class, 'show'])->name('admin.historial.show')->middleware('auth','can:admin.historial.show');
@@ -199,6 +199,8 @@ Route::put('/admin/historial/{id}', [App\Http\Controllers\HistorialController::c
 Route::get('/admin/historial/{id}/confirm-delete', [App\Http\Controllers\HistorialController::class,'confirmDelete'])->name('admin.historial.confirmDelete')->middleware('auth','can:admin.historial.confirmDelete');
 
 Route::delete('/admin/historial/{id}', [App\Http\Controllers\HistorialController::class,'destroy'])->name('admin.historial.destroy')->middleware('auth','can:admin.historial.destroy');
+
+
 
 
 
