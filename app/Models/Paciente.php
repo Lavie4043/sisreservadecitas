@@ -15,4 +15,8 @@ class Paciente extends Model
     {
         return $this->hasMany(Historial::class);
     }
+
+    public function user(){
+        return $this->BelongsTo(User::class);
+    }
 }

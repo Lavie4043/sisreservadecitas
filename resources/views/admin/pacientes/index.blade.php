@@ -31,11 +31,13 @@
         <td style="text-align:center"><b>Obra social</b></td>
         <td style="text-align:center"><b>N° de obra social</b></td>
         <td style="text-align:center"><b>Fecha de nacimiento</b></td>
-        <td style="text-align:center"><b>Género</b></td>
+        
         
         <td style="text-align:center"><b>Celular</b></td>
+          <td style="text-align:center"><b>Dirección</b></td>
         <td style="text-align:center"><b>Email</b></td>
-        <td style="text-align:center"><b>Dirección</b></td>
+        <td style="text-align:center"><b>Contacto</b></td>
+      
         
 
         <td style="text-align:center"><b>Acciones</b></td>
@@ -55,10 +57,15 @@
       <td>{{$paciente->obra_social}}</td>
       <td>{{$paciente->nro_seguro}}</td>
       <td>{{$paciente->fecha_nacimiento}}</td>
-      <td>{{$paciente->genero}}</td>
+      
       <td>{{$paciente->celular}}</td>
-      <td>{{$paciente->correo}}</td>
+      
       <td>{{$paciente->direccion}}</td>
+      <td>{{$paciente->user->email}}</td>
+      <td>{{$paciente->contacto_emergencia}}</td>
+      
+
+
       
       
       <td style="text-align: center">

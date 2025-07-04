@@ -1,5 +1,6 @@
 <h3><center>Horario de Atención del consultorio de {{$consultorio->nombre}}</center></h3>
 
+
 <table class="table table-bordered table-hover table-sm table-striped ">
               <thead>
               <tr> 

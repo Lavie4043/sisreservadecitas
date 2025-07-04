@@ -142,6 +142,22 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('20237399')
         ])->assignRole('paciente');
 
+        Paciente::create([
+            'nombres' => 'Paciente',
+            'apellidos' => '1',
+            'dni' => '12345678',
+            'obra_social' => 'Obra Social 1',
+            'nro_seguro' => '1234567890',
+            'fecha_nacimiento' => '01/01/2000',
+            'genero' => 'Masculino',
+            'celular' => '2612345678',
+            'direccion' => 'Calle Falsa 123',
+            'grupo_sanguineo' => 'O+',
+            'contacto_emergencia' => '987654321',
+            'observaciones' => 'Ninguna',
+            'user_id' => 6
+        ]);
+
         User::create([
             'name' => 'usuario1',
             'email' => 'usuario1@gmail.com',

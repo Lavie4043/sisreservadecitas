@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Paciente;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,9 +13,10 @@ class PacienteController extends Controller
      */
     public function index()
     {
-        $pacientes = Paciente::all();
+        $pacientes = Paciente::with('user')->get();
         return view('admin.pacientes.index',compact('pacientes'));
-    }
+
+    }    
 
     /**
      * Show the form for creating a new resource.
@@ -37,35 +40,40 @@ class PacienteController extends Controller
             'dni' => 'required|unique:pacientes',
             'obra_social' => 'required',
             'nro_seguro' => 'required:pacientes',
-            'celular' => 'required',
-            'direccion' => 'required',
             'fecha_nacimiento' => 'required',
             'genero' => 'required',
-            'correo' => 'required|max:250|unique:pacientes',
+            'celular' => 'required',
+            'direccion' => 'required',
             'grupo_sanguineo' => 'required',
-            'alergias' => 'required',
-            'contacto_emergencia' => 'required',
-            'observaciones' => 'required',
-                
+            'contacto_emergencia' => 'nullable',
+            'observaciones' => 'nullable',
+            'email' => 'required|email|max:250|unique:users',
+            'password' => 'required|max:250|confirmed',  
 
        ]);
 
+       $usuario = new User();
+        $usuario->name = $request->nombres;
+        $usuario->email = $request->email;
+        $usuario->password = Hash::make($request['password']);
+        $usuario->save();
+
         $paciente = new Paciente();
+
+        $paciente->user_id = $usuario->id;
+        
 
         $paciente->nombres          = $request->nombres;
         $paciente->apellidos        = $request->apellidos;
         $paciente->dni               = $request->dni;
         $paciente->obra_social      = $request->obra_social;
         $paciente->nro_seguro       = $request->nro_seguro;
-        $paciente->celular          = $request->celular;
-        $paciente->direccion        = $request->direccion;
         $paciente->fecha_nacimiento = $request->fecha_nacimiento;
         $paciente->genero           = $request->genero;
-        $paciente->correo           = $request->correo;
+        $paciente->celular          = $request->celular;
+        $paciente->direccion        = $request->direccion;
         $paciente->grupo_sanguineo  = $request->grupo_sanguineo;
-        $paciente->alergias         = $request->alergias;
         $paciente->contacto_emergencia = $request->contacto_emergencia;
-       
         $paciente->observaciones    = $request->observaciones;
 
         $paciente->save();
@@ -92,8 +100,10 @@ class PacienteController extends Controller
      */
     public function edit($id)
     {
-        $paciente = Paciente::findOrFail($id);
+        $paciente = Paciente::with('user')->findOrFail($id);
         return view('admin.pacientes.edit',compact('paciente'));
+
+         
     }
 
     
@@ -110,16 +120,17 @@ class PacienteController extends Controller
             'dni'         => 'required|unique:pacientes,dni,'.$paciente->id,
             'obra_social' => 'required',
             'nro_seguro' => 'required',
-            'celular'    => 'required',
-            'direccion'  => 'required',
             'fecha_nacimiento' => 'required',
             'genero'     => 'required',
-            'correo'     => 'required|max:250|unique:pacientes,correo,'.$paciente->id,
+            'celular'    => 'required',
+            'direccion'  => 'required',
+                     
             'grupo_sanguineo' => 'required',
-            'alergias'   => 'required',
-            'contacto_emergencia' => 'required',
             
+            'contacto_emergencia' => 'required',
             'observaciones' => 'required',
+            'email' => 'required|max:250|unique:users,email,'.$paciente->user->id,
+            'password' =>'nullable|max:250|confirmed',
                 
 
        ]); 
@@ -129,27 +140,36 @@ class PacienteController extends Controller
         $paciente->dni              = $request->dni;
         $paciente->obra_social       = $request->obra_social;
         $paciente->nro_seguro       = $request->nro_seguro;
-        $paciente->celular          = $request->celular;
-        $paciente->direccion        = $request->direccion;
+              
         $paciente->fecha_nacimiento = $request->fecha_nacimiento;
         $paciente->genero           = $request->genero;
-        $paciente->correo           = $request->correo;
+        $paciente->celular          = $request->celular;
+        $paciente->direccion        = $request->direccion;
         $paciente->grupo_sanguineo  = $request->grupo_sanguineo;
-        $paciente->alergias         = $request->alergias;
         $paciente->contacto_emergencia = $request->contacto_emergencia;
-        
         $paciente->observaciones    = $request->observaciones;
 
-        $paciente->save();
-        return redirect()->route('admin.pacientes.index')
-        
+        $usuario = User::find($paciente->user->id);
+
+        $usuario->name = $request->nombres;
+        $usuario->email = $request->email;
+
+        if($request->filled('password')){
+            $usuario->password = Hash::make($request['password']);
+         
+
+        }
+            $usuario->save();
+
+            return redirect()->route('admin.pacientes.index')
         
         ->with('mensaje', 'Se actualizó al paciente') 
         ->with('icono', 'success'); 
     }
 
     public function confirmDelete($id){
-        $paciente = Paciente::findOrFail($id);
+       
+        $paciente = Paciente::with('user')->FindOrFail($id);
         return view('admin.pacientes.delete',compact('paciente'));
 
     }
@@ -159,9 +179,14 @@ class PacienteController extends Controller
      */
     public function destroy($id){
 
-        $paciente = Paciente::find($id);
+       $paciente = Paciente::find($id);
 
-       //eliminar al paciente
+        //eliminar al usuario asociado
+
+        $user = $paciente->user;
+        $user->delete();
+
+        //eliminar a la secretaria
 
         $paciente->delete();
         
@@ -169,6 +194,7 @@ class PacienteController extends Controller
         
         ->with('mensaje', 'Se eliminó al paciente') 
         ->with('icono', 'success'); 
+        
         
     }
 }

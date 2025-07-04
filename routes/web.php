@@ -200,6 +200,9 @@ Route::get('/admin/historial/{id}/confirm-delete', [App\Http\Controllers\Histori
 
 Route::delete('/admin/historial/{id}', [App\Http\Controllers\HistorialController::class,'destroy'])->name('admin.historial.destroy')->middleware('auth','can:admin.historial.destroy');
 
+//ruta para el chatbot
+
+Route::post('/admin/chatbot', [ChatbotController::class, 'responder']);
 
 
 

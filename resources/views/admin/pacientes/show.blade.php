@@ -66,6 +66,22 @@
                                         
                                     </div>
                                 </div>
+                             
+                                <div class="col-md-4">
+                                    <div class="form group">
+                                        <label for="">Grupo sanguíneo</label>
+                                        <p>{{$paciente->grupo_sanguineo}}</p>
+                                        
+                                    </div>
+                                </div>   
+                            
+
+                             <div class="col-md-4">
+                                    <div class="form group">
+                                        <label for="">Domicilio</label>
+                                        <p>{{$paciente->direccion}}</p>
+                                    </div>
+                                </div>
                                 </div>
 
                                 <div class="row">
@@ -76,34 +92,9 @@
                                     </div>
                                 </div>
                                                   
-                                
-                                <div class="col-md-4">
-                                    <div class="form group">
-                                        <label for="">Email</label>
-                                        <p>{{$paciente->correo}}</p>
-
-                                    </div>
-                                </div>   
-
-                                <div class="col-md-4">
-                                    <div class="form group">
-                                        <label for="">Domicilio</label>
-                                        <p>{{$paciente->direccion}}</p>
-                                    </div>
-                                </div>
-                                </div>
-
-                                <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form group">
-                                        <label for="">Grupo sanguíneo</label>
-                                        <p>{{$paciente->grupo_sanguineo}}</p>
-                                        
-                                    </div>
-                                </div>
-                                
-
-                                                          
+                                                                 
+                            
+                                                                                         
                                 <div class="col-md-4">
                                     <div class="form group">
                                         <label for="">Contacto de emergencia</label>
@@ -111,25 +102,26 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <div class="form group">
-                                        <label for="">Alergias</label>
-                                        <p>{{$paciente->alergias}}</p>
-                                    </div>
-                                </div>
+                                                                
+                                
+                                
 
                                 
-                                
-                                
+
+                                <div class="col-md-4">
+                                    <div class="form group">
+                                        <label for="">Email</label>
+                                        <p>{{$paciente->user->email}}</p>
+
+                                    </div>
+                                </div>   
+                                </div>
 
                                 <div class="col-md-8">
                                     <div class="form group">
                                         <label for="">Observaciones</label>
                                         <p>{{$paciente->observaciones}}</p>
                                     </div>
-                                </div>
-
-                                
                                 </div>
                              
 <hr>
