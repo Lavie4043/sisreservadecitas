@@ -52,7 +52,7 @@
       
       <td style="text-align: center">
           <div class="btn-group" role="group" aria-label="Basic example">
-            
+           <a href="{{url('admin')}}"class="btn btn-secondary btn-sm">Volver</a> 
           <form action="{{url('/admin/eventos/destroy',$evento->id)}}" id="formulario{{$evento->id}}" onclick="preguntar{{$evento->id}} (event)" method="POST">
             @csrf
             @method('DELETE')

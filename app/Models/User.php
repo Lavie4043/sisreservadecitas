@@ -64,6 +64,9 @@ class User extends Authenticatable
         return $this->hasOne(Paciente::class);
     }
 
+   
+
+
     public function events()
     {
         return $this->hasMany(Event::class);

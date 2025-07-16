@@ -29,7 +29,9 @@ class AdminController extends Controller
          $consultorios = Consultorio::all();
          $doctores = Doctor::all();
          $eventos = Event::all();
-        return view('admin.index', compact('total_usuarios', 'total_secretarias', 'total_pacientes', 'total_consultorios', 'total_doctores', 'total_horarios', 'consultorios', 'doctores', 'eventos', 'total_eventos', 'total_configuraciones'));
+         
+         $pacientes = Paciente::all();
+        return view('admin.index', compact('total_usuarios', 'total_secretarias', 'total_pacientes', 'total_consultorios', 'total_doctores', 'total_horarios', 'consultorios', 'doctores', 'eventos', 'total_eventos', 'total_configuraciones',  'pacientes'));
     }
 
     public function create()
@@ -65,4 +67,6 @@ class AdminController extends Controller
         $eventos = Event::where('user_id',$id)->get();
         return view('admin.ver_reservas', compact('eventos'));
     }
+
+   
 }

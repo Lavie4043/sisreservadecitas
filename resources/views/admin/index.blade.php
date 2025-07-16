@@ -2,6 +2,7 @@
 @section('content') 
 
 <div class="row">
+   
     <h3>
         Bienvenido: {{Auth::user()->email}} / Rol: {{Auth::user()->roles->pluck('name')->first()}}
     </h3>
@@ -231,7 +232,7 @@
      </div>
      </div>
      
-    
+ 
      <div class="row">
   <div class="col-md-12">
     <div class="card card-outline card-warning">
@@ -309,6 +310,10 @@
 
 <a href="{{url('/admin/ver_reservas',Auth::user()->id)}}" class=" btn btn-success">Ver las reservas</a>
 
+<a href="{{url('admin/pacientes/mis_historiales',Auth::user()->id)}}" class="btn btn-primary">
+    Ver mi historial médico
+</a>
+
 <!-- Modal -->
 <form action="{{url('/admin/eventos/create')}}" method="POST">
   @csrf
@@ -326,10 +331,10 @@
           <div class="col-md-12">
             <div class="form-group">
               <label for="">Doctor</label>
-              <select name="doctor_id" id="" class="form-control">
+              <select name="doctor_id" required id="" class="form-control">
                 <option value="">Seleccione un doctor</option>
                 @foreach ($doctores as $doctore)
-                  <option value="{{ $doctore->id }}">{{ $doctore->nombres." ".$doctore->apellidos." ".$doctore->especialidad}}</option>
+                  <option value="{{ $doctore->id }}">{{ $doctore->nombres." ".$doctore->apellidos." ".$doctore->especialidad}}</option> require
                 @endforeach
               </select>
             </div>
@@ -367,7 +372,7 @@
         <div class="col-md-12">
             <div class="form-group">
               <label for="">Hora de reserva</label>
-              <input type="time" name="hora_reserva" id="hora_reserva" class="form-control">
+              <input type="time" name="hora_reserva" id="hora_reserva" class="form-control" required>
               @error('hora_reserva')
               <small style="color:red">{{message}}</small>
               @enderror
@@ -433,7 +438,43 @@
 </div>
      </div>
 
-   
+  
+
+
+    
+                          
+
+                            
+          
+
+                        <hr>
+          
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form group">
+                                        <a href="{{url('admin/historial')}}"class="btn btn-secondary">Volver</a>
+                                    
+    
+                                    </div>
+                                </div>   
+                            </div> 
+
+                            
+
+    
+                            </form>
+
+                        </div>
+                
+                </div>
+                        
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
     
   @endcan
@@ -481,6 +522,8 @@
       <td style="text-align:center">{{\Carbon\Carbon::parse($evento->start)->format('H-i')}}</td>     
       
 </tr>
+
+
       @endif
   
   

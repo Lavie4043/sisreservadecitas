@@ -1,10 +1,14 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Paciente;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Historial;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class PacienteController extends Controller
 {
@@ -77,6 +81,7 @@ class PacienteController extends Controller
         $paciente->observaciones    = $request->observaciones;
 
         $paciente->save();
+        $usuario->assignRole('paciente');
         
 
         return redirect()->route('admin.pacientes.index')
@@ -197,4 +202,33 @@ class PacienteController extends Controller
         
         
     }
+
+    
+    
+    public function mis_historiales()
+{
+    $user = Auth::user();
+    $paciente = Paciente::where('user_id', $user->id)->first();
+
+    if (!$paciente) {
+        return redirect()->back()->with('error', 'No se encontró el paciente asociado al usuario.');
+    }
+
+    $filtro = request('filtro');
+
+    if ($filtro === 'ultimo') {
+        $historiales = Historial::where('paciente_id', $paciente->id)
+            ->orderBy('created_at', 'desc')
+            ->take(1)
+            ->get();
+    } else {
+        $historiales = Historial::where('paciente_id', $paciente->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+
+    return view('admin.pacientes.mis_historiales', compact('historiales'));
+}
+
+    
 }

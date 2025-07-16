@@ -3,6 +3,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MensajeContactoController;
+use App\Http\Controllers\ContactoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +18,19 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
+
+Route::post('/contacto', [MensajeContactoController::class, 'store'])->name('contacto.enviar');
+
+Route::get('/contacto', function () {
+    return view('contacto');
+});
+
+
+
 Route::get('/', [App\Http\Controllers\WebController::class, 'index'])->name('index');
+
+
 
 
 Route::get('/admin/ver_reservas/{id}', [App\Http\Controllers\AdminController::class, 'ver_reservas'])->name('ver_reservas');
@@ -26,6 +41,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //Rutas para el admin
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin.index')->middleware('auth');
+
+Route::get('/admin/mensajes', [MensajeContactoController::class, 'index'])->name('admin.mensajes');
+
 
 //Rutas para el admin configuraciones
 
@@ -200,10 +218,12 @@ Route::get('/admin/historial/{id}/confirm-delete', [App\Http\Controllers\Histori
 
 Route::delete('/admin/historial/{id}', [App\Http\Controllers\HistorialController::class,'destroy'])->name('admin.historial.destroy')->middleware('auth','can:admin.historial.destroy');
 
-//ruta para el chatbot
+//ruta para el historial clinico del paciente
 
-Route::post('/admin/chatbot', [ChatbotController::class, 'responder']);
 
+Route::get('/admin/pacientes/mis_historiales/{id}', [App\Http\Controllers\PacienteController::class, 'mis_historiales'])
+    ->name('admin.pacientes.mis_historiales')
+    ->middleware(['auth', 'can:admin.pacientes.mis_historiales']);
 
 
 

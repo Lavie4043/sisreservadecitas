@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
      User::create([
             'name' => 'administrador',
             'email' => 'admin@admin.com',
-            'password' => Hash::make('admin1324')
+            'password' => Hash::make('123456789')
         ])->assignRole('admin');
     
 
@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Secretaria',
             'email' => 'secretaria@gmail.com',
-            'password' => Hash::make('20237397')
+            'password' => Hash::make('123456789')
         ])->assignRole('secretaria');
 
         Secretaria::create([
@@ -59,9 +59,9 @@ class DatabaseSeeder extends Seeder
 
 
         User::create([
-            'name' => 'doctor1',
-            'email' => 'doctor1@gmail.com',
-            'password' => Hash::make('20237398')
+            'name' => 'Aurelia',
+            'email' => 'aure@gmail.com',
+            'password' => Hash::make('123456789')
         ])->assignRole('doctor');
         Doctor::create([
             'nombres' => 'doctor1',
@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'doctor2',
             'email' => 'doctor2@gmail.com',
-            'password' => Hash::make('20237398')
+            'password' => Hash::make('123456789')
         ])->assignRole('doctor');
 
         Doctor::create([
@@ -139,7 +139,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'paciente1',
             'email' => 'paciente1@gmail.com',
-            'password' => Hash::make('20237399')
+            'password' => Hash::make('123456789')
         ])->assignRole('paciente');
 
         Paciente::create([
@@ -161,7 +161,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'usuario1',
             'email' => 'usuario1@gmail.com',
-            'password' => Hash::make('20237390')
+            'password' => Hash::make('123456789')
         ])->assignRole('usuario');
 
         ///creacion de horarios

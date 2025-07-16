@@ -39,6 +39,8 @@ class UsuarioController extends Controller
         $usuario->password = Hash::make($request['password']);
         $usuario->save();
 
+        $usuario->assignRole('usuario');
+
         return redirect()->route('admin.usuarios.index')
             ->with('mensaje', 'Usuario creado exitosamente')
             ->with('icono', 'success');
