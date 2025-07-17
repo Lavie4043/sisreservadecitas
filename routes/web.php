@@ -7,6 +7,7 @@ use App\Http\Controllers\MensajeContactoController;
 use App\Http\Controllers\ContactoController;
 
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -158,6 +159,25 @@ Route::put('/admin/doctores/{id}', [App\Http\Controllers\DoctorController::class
 Route::get('/admin/doctores/{id}/confirm-delete', [App\Http\Controllers\DoctorController::class,'confirmDelete'])->name('admin.doctores.confirmDelete')->middleware('auth','can:admin.doctores.confirmDelete');
 
 Route::delete('/admin/doctores/{id}', [App\Http\Controllers\DoctorController::class,'destroy'])->name('admin.doctores.destroy')->middleware('auth','can:admin.doctores.destroy');
+
+
+Route::get('/emails/mensajes/', [App\Http\Controllers\MensajeContactoController::class, 'index'])->name('emails.mensajes')->middleware('auth','can:emails.mensajes.index');
+    
+
+
+// Ruta para enviar el formulario
+Route::post('/contacto/enviar', [MensajeContactoController::class, 'store'])
+    ->name('contacto.enviar');
+
+// Ruta temporal
+
+
+
+
+
+
+
+
 
 //rutas para admin- horarios
 

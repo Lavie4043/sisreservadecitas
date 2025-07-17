@@ -355,6 +355,36 @@ scratch. This page gets rid of all links and provides the needed markup only.
       @endcan
 
       
+       @can('emails.mensajes.index')
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+    
+               
+            <i class="fa-duotone fa-solid fa-envelope" aria-hidden="true" style="font-size: 10px; color: white;"></i>
+            
+            
+              <p>
+                  Mensajes
+                  <i class="right fas fa-angle-left"></i>
+                  
+                
+                
+              </p>
+            </a>
+          <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{url('emails/mensajes')}}" class="nav-link active">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lista de mensajes</p>
+                </a>
+                </ul>
+          </li>
+              
+      @endcan   
+              
+      
+
+      
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

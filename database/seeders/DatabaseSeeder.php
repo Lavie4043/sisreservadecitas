@@ -13,6 +13,7 @@ use App\Models\Consultorio;
 use App\Models\Horario;
 use App\Models\Configuracione;
 use App\Models\Paciente;
+use App\Models\MensajeContacto;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
