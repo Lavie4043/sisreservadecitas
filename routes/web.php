@@ -163,7 +163,11 @@ Route::delete('/admin/doctores/{id}', [App\Http\Controllers\DoctorController::cl
 
 Route::get('/emails/mensajes/', [App\Http\Controllers\MensajeContactoController::class, 'index'])->name('emails.mensajes')->middleware('auth','can:emails.mensajes.index');
     
+// Ruta mensaje leido
 
+Route::patch('/emails/mensajes/{id}/read', [MensajeContactoController::class, 'markAsRead'])
+    ->name('mensajes.markAsRead')
+    ->middleware(['auth', 'can:emails.mensajes.index']);
 
 // Ruta para enviar el formulario
 Route::post('/contacto/enviar', [MensajeContactoController::class, 'store'])

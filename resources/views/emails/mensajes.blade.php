@@ -12,6 +12,8 @@
                 <th>Asunto</th>
                 <th>Mensaje</th>
                 <th>Fecha</th>
+                <th>Acciones</th>
+
             </tr>
         </thead>
         <tbody>
@@ -22,7 +24,20 @@
                     <td>{{ $msg->subject }}</td>
                     <td>{{ Str::limit($msg->message, 60) }}</td>
                     <td>{{ $msg->created_at->format('d/m/Y H:i') }}</td>
+                <td>
+    @if(!$msg->is_read)
+        <form action="{{ route('mensajes.markAsRead', $msg->id) }}" method="POST">
+            @csrf
+            @method('PATCH')
+            <button class="btn btn-sm btn-success">📖 Marcar como leído</button>
+        </form>
+    @else
+        <span class="badge bg-secondary">Leído</span>
+    @endif
+</td>
+                
                 </tr>
+
             @empty
                 <tr>
                     <td colspan="5" class="text-center">No hay mensajes aún.</td>

@@ -58,5 +58,14 @@ public function enviarFormulario(Request $request)
 
     return redirect()->back()->with('mensaje', 'Formulario enviado');
 }
+
+public function markAsRead($id)
+{
+    $mensaje = MensajeContacto::findOrFail($id);
+    $mensaje->is_read = true;
+    $mensaje->save();
+
+    return redirect()->back()->with('success', 'Mensaje marcado como leído.');
+}
     
 }

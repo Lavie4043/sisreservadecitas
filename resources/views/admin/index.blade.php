@@ -164,6 +164,25 @@
 
           @endcan
 
+          @can('emails.mensajes.index')
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-dark">
+              <div class="inner">
+                <h3>{{$total_mensajescontacto}}</h3>
+
+                <p>Mensajes</p>
+              </div>
+              <div class="icon">
+                <i class="fa fa-calendar-check" aria-hidden="true" style="font-size: 60px; color: white;"></i>
+              </div>
+              <a href="emails/mensajes/" class="small-box-footer">Mas información </a>
+            </div>
+          </div>
+
+          @endcan
+
           
           
 </div>
